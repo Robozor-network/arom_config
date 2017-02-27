@@ -1,1 +1,3 @@
 # arom_config
+
+Tento repozitář slouží pro správu konfigurací pro zařízení používající AROM. Jednotlivé konfigurace mají svou vlastní vývojovou větev...
