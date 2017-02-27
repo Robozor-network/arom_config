@@ -1,0 +1,368 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2005/10/profile">
+    #if $encoding == 'utf8'
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    #end if    
+    <title>$station.location Weakly Weather Conditions</title>
+    <!-- <link rel="stylesheet" type="text/css" href="weewx.css"/> -->
+    <link rel="icon" type="/weewx/image/png" href="favicon.ico" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      function openURL(urlname)
+      {
+        window.location=urlname;
+      }
+      function openNoaaFile(date)
+      {
+        var url = "NOAA/NOAA-";
+        url = url + date;
+        url = url + ".txt";
+        window.location=url;
+      }
+    </script>
+    <style type="text/css">
+    .card-img{
+      width: 100%;
+    }
+
+    .card-img img:hover {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform:translateZ(0) scale(1.30); /* Safari and Chrome */
+    -moz-transform:scale(1.30); /* Firefox */
+    -ms-transform:scale(1.30); /* IE 9 */
+    -o-transform:translatZ(0) scale(1.30); /* Opera */
+    transform:translatZ(0) scale(1.30);
+}
+
+    </style>
+  </head>
+
+<body>
+  <div class="container"><div id="arom">
+      
+      <div class="jumbotron" >
+        <h1>$station.location</h1>
+          <h2>$week.dateTime, Weekly</h2>
+      </div>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header">
+              <h3>Weekly Conditions</h3>
+            </div>
+            <!-- <div class="card-block"> -->
+              <table class="table table-striped  table-hover">
+                <tbody>
+                  <tr>
+                    <td class="stats_label">Outside Temperature</td>
+                    <td class="stats_data">$week.outTemp</td>
+                  </tr>
+                  <tr>
+                    <td class="stats_label">Wind Chill</td>
+                    <td class="stats_data">$week.windchill</td>
+                  </tr>
+                  <tr>
+                    <td class="stats_label">Heat Index</td>
+                    <td class="stats_data">$week.heatindex</td>
+                  </tr>
+                  <tr>
+                    <td class="stats_label">Dewpoint</td>
+                    <td class="stats_data">$week.dewpoint</td>
+                  </tr>
+                  <tr>
+                    <td class="stats_label">Humidity</td>
+                    <td class="stats_data">$week.outHumidity</td>
+                  </tr>
+                  <tr>
+                    <td class="stats_label">Barometer</td>
+                    <td class="stats_data">$week.barometer</td>
+                  </tr>
+                  <tr>
+                    <td class="stats_label">Barometer Trend ($trend.time_delta.hour.format("%.0f"))</td>
+                    <td class="stats_data">$trend.barometer</td>
+                  </tr>
+                  <tr>
+                    <td class="stats_label">Wind</td>
+                    <td class="stats_data">$week.windSpeed from $week.windDir ($week.windDir.ordinal_compass)</td>
+                  </tr>
+                  <tr>
+                    <td class="stats_label">Rain Rate</td>
+                    <td class="stats_data">$week.rainRate</td>
+                  </tr>
+                  <tr>
+                    <td class="stats_label">Inside Temperature</td>
+                    <td class="stats_data">$week.inTemp</td>
+                  </tr>
+                  #if $day.extraTemp1.has_data
+                  <tr>
+                    <td class="stats_label">Pond Temperature</td>
+                    <td class="stats_data">$week.extraTemp1</td>
+                  </tr>
+                  #end if
+                  #if $day.UV.has_data
+                  <tr>
+                    <td class="stats_label">UV</td>
+                    <td class="stats_data">$week.UV</td>
+                  </tr>
+                  #end if
+                  #if $day.ET.has_data and $day.ET.sum.raw > 0.0
+                  <tr>
+                    <td class="stats_label">ET</td>
+                    <td class="stats_data">$week.ET</td>
+                  </tr>
+                  #end if
+                  #if $day.radiation.has_data
+                  <tr>
+                    <td class="stats_label">Solar Radiation</td>
+                    <td class="stats_data">$week.radiation</td>
+                  </tr>
+                  #end if
+                </tbody>
+              </table>
+            <!-- </div> -->
+          </div>
+        </div>
+
+
+        <div class="col-sm-6">
+          <div class="card"> 
+            <div class="card-header">
+              <h3>Statistics</h3><small>Since Midnight</small>
+            </div>
+            <!-- <div class="card-block"> -->
+            <table class="table table-striped  table-hover">
+              <tbody>
+                <tr>
+                  <td class="stats_label">
+                    High Temperature<br/>
+                    Low Temperature
+                  </td>
+                  <td class="stats_data">
+                    $day.outTemp.max at $day.outTemp.maxtime<br/>
+                    $day.outTemp.min at $day.outTemp.mintime
+                  </td>
+                </tr>
+                <tr>
+                  <td class="stats_label">
+                    High Heat Index<br/>
+                    Low Wind Chill
+                  </td>
+                  <td class="stats_data">
+                    $day.heatindex.max at $day.heatindex.maxtime<br/>
+                    $day.windchill.min at $day.windchill.mintime
+                  </td>
+                </tr>
+                <tr>
+                  <td class="stats_label">
+                    High Humidity<br/>
+                    Low Humidity
+                  </td>
+                  <td class="stats_data">
+                    $day.outHumidity.max at $day.outHumidity.maxtime<br/>
+                    $day.outHumidity.min at $day.outHumidity.mintime
+                  </td>
+                </tr>
+                <tr>
+                  <td class="stats_label">
+                    High Dewpoint<br/>
+                    Low Dewpoint
+                  </td>
+                  <td class="stats_data">
+                    $day.dewpoint.max at $day.dewpoint.maxtime<br/>
+                    $day.dewpoint.min at $day.dewpoint.mintime
+                  </td>
+                </tr>
+                <tr>
+                  <td class="stats_label">
+                    High Barometer<br/>
+                    Low Barometer
+                  </td>
+                  <td class="stats_data">
+                    $day.barometer.max at $day.barometer.maxtime<br/>
+                    $day.barometer.min at $day.barometer.mintime
+                  </td>
+                </tr>
+                <tr>
+                  <td class="stats_label">Today's Rain</td>
+                  <td class="stats_data">$day.rain.sum</td>
+                </tr>
+                <tr>
+                  <td class="stats_label">High Rain Rate</td>
+                  <td class="stats_data">$day.rainRate.max at $day.rainRate.maxtime</td>
+                </tr>
+                <tr>
+                  <td class="stats_label">
+                    High Wind
+                  </td>
+                  <td class="stats_data">
+                    $day.wind.max from $day.wind.gustdir at $day.wind.maxtime
+                  </td>
+                </tr>
+                <tr>
+                  <td class="stats_label">
+                    Average Wind
+                  </td>
+                  <td class="stats_data">
+                    $day.wind.avg
+                  </td>
+                </tr>
+                <tr>
+                  <td class="stats_label">
+                    RMS Wind
+                  </td>
+                  <td class="stats_data">
+                    $day.wind.rms
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="stats_label">
+                    Vector Average Speed<br/>
+                    Vector Average Direction
+                  </td>
+                  <td class="stats_data">
+                    $day.wind.vecavg<br/>
+                    $day.wind.vecdir
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="stats_label">
+                    High Inside Temperature<br/>
+                    Low Inside Temperature
+                  </td>
+                  <td class="stats_data">
+                    $day.inTemp.max at $day.inTemp.maxtime<br/>
+                    $day.inTemp.min at $day.inTemp.mintime
+                  </td>
+                </tr>
+                #if $day.extraTemp1.has_data
+                <tr>
+                  <td class="stats_label">
+                    High Pond Temperature<br/>
+                    Low Pond Temperature
+                  </td>
+                  <td class="stats_data">
+                    $day.extraTemp1.max at $day.extraTemp1.maxtime<br/>
+                    $day.extraTemp1.min at $day.extraTemp1.mintime
+                  </td>
+                </tr>
+                #end if
+                #if $day.UV.has_data
+                <tr>
+                  <td class="stats_label">
+                    High UV<br/>
+                    Low UV
+                  </td>
+                  <td class="stats_data">
+                    $day.UV.max at $day.UV.maxtime<br/>
+                    $day.UV.min at $day.UV.mintime
+                  </td>
+                </tr>
+                #end if
+                #if $day.ET.has_data and $day.ET.sum.raw >0.0
+                <tr>
+                  <td class="stats_label">
+                    High ET<br/>
+                    Low ET
+                  </td>
+                  <td class="stats_data">
+                    $day.ET.max at $day.ET.maxtime<br/>
+                    $day.ET.min at $day.ET.mintime
+                  </td>
+                </tr>
+                #end if
+                #if $day.radiation.has_data
+                <tr>
+                  <td class="stats_label">
+                    High Radiation<br/>
+                    Low Radiation
+                  </td>
+                  <td class="stats_data">
+                    $day.radiation.max at $day.radiation.maxtime<br/>
+                    $day.radiation.min at $day.radiation.mintime
+                  </td>
+                </tr>
+                #end if
+              </tbody>
+            </table>
+           <!-- </div> -->
+          </div>
+        </div> 
+
+      <div class="col-sm-6">
+        <div class="card"> 
+          <div class="card-header">
+            <h3>Graphs</h3>
+          </div>
+          <div class="card-text">
+            <div id="content">
+              
+              <div id="plots">
+                <img class="card-img" src="/weewx/weektempdew.png"   alt="temperatures" />
+                <img class="card-img" src="/weewx/weektempchill.png" alt="heatchill" />
+                <img class="card-img" src="/weewx/weekrain.png"      alt="rain" />
+                <img class="card-img" src="/weewx/weekwind.png"      alt="wind" />
+                <img class="card-img" src="/weewx/weekbarometer.png" alt="barometer"/>
+                <img class="card-img" src="/weewx/weekwinddir.png"   alt="Hi Wind" />
+                <img class="card-img" src="/weewx/weekinside.png"    alt="Inside" />
+                <img class="card-img" src="/weewx/weekwindvec.png"   alt="Wind Vector" />
+                #if $day.radiation.has_data
+                <img class="card-img" src="/weewx/weekradiation.png" alt="Radiation" />
+                #end if
+                #if $day.UV.has_data
+                <img class="card-img" src="/weewx/weekuv.png" alt="UV Index" />
+                #end if
+                #if $day.rxCheckPercent.has_data
+                <img class="card-img" src="/weewx/weekrx.png"        alt="day rx percent"/>
+                #end if
+                #if $day.extraTemp1.has_data
+                <img class="card-img" src="/weewx/weekpond.png"      alt="Pond Temperatures" />
+                #end if
+              </div> <!-- End id "plots" -->
+            </div> <!-- End id "content" -->
+          </div>
+        </div>
+      </div>
+
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-block">
+              <p>Weewx uptime:  $station.uptime<br/>
+                Server uptime: $station.os_uptime<br/></p>
+
+              <input type="button" value="Current" id="openCurrent" onclick="openURL('index.html')" />
+              <input type="button" value="Week"    id="openWeek" onclick="openURL('week.html')" />
+              <input type="button" value="Month"   id="openMonth" onclick="openURL('month.html')" />
+              <input type="button" value="Year"    id="openYear" onclick="openURL('year.html')" />
+              <p>Monthly summary:&nbsp;
+              <select NAME=noaaselect onchange="openNoaaFile(value)">
+              #for $weekYear in $SummaryByMonth
+                  <option value="$weekYear">$weekYear</option>
+              #end for
+      	    <option selected>-Select month-</option>
+              </select>
+              <br/>
+              Yearly summary:&nbsp;
+              <select NAME=noaaselect onchange="openNoaaFile(value)">
+              #for $yr in $SummaryByYear
+                  <option value="$yr">$yr</option>
+              #end for
+      	    <option selected>-Select year-</option>
+              </select>
+              </p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div></div>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+{
+    "name": "pymlab", 
+    "relationship": "111", 
+    "children": [
+        {
+            "device": "smbus", 
+            "port": 1, 
+            "children": [
+                {
+                    "type": "sht31", 
+                    "name": "AWS_humi", 
+                    "relationship": "110", 
+                    "address": 68
+                }, 
+                {
+                    "type": "rps01", 
+                    "name": "AWS_wind_s", 
+                    "relationship": "110", 
+                    "address": 64
+                }, 
+                {
+                    "type": "lts01", 
+                    "name": "AWS_temp_ref", 
+                    "relationship": "110", 
+                    "address": 72
+                }, 
+                {
+                    "gauss": 0.88, 
+                    "type": "mag01", 
+                    "name": "AWS_wind_d", 
+                    "relationship": "110", 
+                    "address": 30
+                }, 
+                {
+                    "type": "altimet01", 
+                    "name": "AWS_press", 
+                    "relationship": "110", 
+                    "address": 96
+                }, 
+                {
+                    "type": "isl03", 
+                    "name": "AWS_light", 
+                    "relationship": "110", 
+                    "address": 16
+                }, 
+                {
+                    "type": "thermopile01", 
+                    "name": "AWS_clouds", 
+                    "relationship": "110", 
+                    "address": 93
+                }, 
+                {
+                    "type": "i2clcd", 
+                    "name": "StatusLCD", 
+                    "relationship": "110", 
+                    "address": 39
+                }
+            ], 
+            "relationship": "111", 
+            "name": "bus1"
+        }, 
+        {
+            "device": "serial", 
+            "port": "/dev/ttyUSB0", 
+            "children": [
+                {
+                    "type": "lts01", 
+                    "name": "telescope_lts", 
+                    "relationship": "110", 
+                    "address": 72
+                }, 
+                {
+                    "type": "i2cspi", 
+                    "name": "telescope_spi", 
+                    "relationship": "110", 
+                    "address": 46
+                }, 
+                {
+                    "type": "I2CIO_TCA9535", 
+                    "name": "gpio_mount", 
+                    "relationship": "110", 
+                    "address": 38
+                }
+            ], 
+            "relationship": "111", 
+            "name": "bus2"
+        }
+    ]
+}

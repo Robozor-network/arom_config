@@ -1,0 +1,97 @@
+{
+    "calculation": [
+        {
+            "device": "dewpoint", 
+            "values": [
+                "aws_temperature0", 
+                "aws_humidity0"
+            ], 
+            "name": "aws_dewpoint0", 
+            "unit": "arom_temp_C"
+        }, 
+        {
+            "device": "pressure_to_sea_level", 
+            "values": [
+                "aws_pressure", 
+                "aws_temperature0"
+            ], 
+            "name": "aws_barometric0", 
+            "unit": "arom_press_PA", 
+            "height": 400
+        }
+    ], 
+    "sensors": [
+        {
+            "device": "telescope_lts", 
+            "name": "telescope_temp", 
+            "unit": "arom_temp_C", 
+            "method": "get_temp"
+        }, 
+        {
+            "device": "AWS_humi", 
+            "name": "aws_temperature0", 
+            "unit": "arom_temp_C", 
+            "method": "get_temp"
+        }, 
+        {
+            "device": "AWS_temp_ref", 
+            "name": "aws_temperature1", 
+            "unit": "arom_temp_C", 
+            "method": "get_temp"
+        }, 
+        {
+            "device": "AWS_press", 
+            "name": "aws_temperature2", 
+            "unit": "arom_temp_C", 
+            "method": "get_temp"
+        }, 
+        {
+            "device": "AWS_clouds", 
+            "name": "aws_temperature3", 
+            "unit": "arom_temp_C", 
+            "method": "getTambient"
+        }, 
+        {
+            "device": "AWS_clouds", 
+            "name": "aws_temperature_sky", 
+            "unit": "arom_temp_C", 
+            "method": "getTobject1"
+        }, 
+        {
+            "device": "AWS_press", 
+            "name": "aws_pressure", 
+            "unit": "arom_press_PA", 
+            "method": "get_press"
+        }, 
+        {
+            "device": "AWS_temp_ref", 
+            "name": "aws_temperature1", 
+            "unit": "arom_temp_C", 
+            "method": "get_temp"
+        }, 
+        {
+            "device": "AWS_humi", 
+            "name": "aws_humidity0", 
+            "unit": "arom_humi_perc", 
+            "method": "get_humi"
+        }, 
+        {
+            "device": "AWS_light", 
+            "name": "aws_light", 
+            "unit": "arom_light_Lux-10x", 
+            "method": "get_lux"
+        }, 
+        {
+            "device": "AWS_wind_d", 
+            "name": "aws_winddir", 
+            "unit": "arom_degree", 
+            "method": "get_azimuth"
+        }, 
+        {
+            "device": "AWS_wind_s", 
+            "name": "aws_windspd", 
+            "unit": "arom_mps", 
+            "method": "get_speed"
+        }
+    ]
+}
